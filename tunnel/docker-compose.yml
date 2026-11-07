@@ -1,0 +1,10 @@
+services:
+  xray:
+    image: ghcr.io/xtls/xray-core:latest
+    container_name: open-network-xray
+    restart: unless-stopped
+    command: ["run", "-config", "/etc/xray/config.json"]
+    ports:
+      - "${PORT:-8880}:8880"
+    volumes:
+      - ./config.json:/etc/xray/config.json:ro
